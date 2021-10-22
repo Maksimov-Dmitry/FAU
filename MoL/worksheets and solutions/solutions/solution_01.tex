@@ -5,6 +5,7 @@
 \usepackage{enumitem}
 \usepackage{caption}
 \usepackage{subcaption}
+
 \NiceMatrixOptions{cell-space-limits = 1pt}
 
 \title{Solutions worksheet 01}
@@ -209,5 +210,58 @@ $$
 \end{enumerate}
 \newpage
 \exercise*[{[Implementing EM for Clustering]}]
+
+\exercise*[{[Experiments with K-Means and EM]}]
+
+\exercise*[{[Theory of K-means]}]
+
+\begin{itemize}
+	\item Show that the iterates of the algorithm satisfy
+		\[\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i)}}\norm{x - m_k^{(i)}}^2 \leq
+		\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i-1)}}\norm{x - m_k^{(i-1)}}^2 \]
+		To confirm the inequality above we will show that both of operations can never increase the clustering energy.
+		\[E(C^{(i)},m^{(i)}) \coloneqq \frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i)}}\norm{x - m_k^{(i)}}^2 \triangleq \text{clustering energy}\]
+		\begin{enumerate}
+		\item $E(C^{(i)},m^{(i)}) < E(C^{(i-1)},m^{(i)})$
+		
+			From the logic of the algorithm: $C^{(i)}$ and $C^{(i-1)}$ are differently only if there is a point that finds a closer cluster center in $m^{(i)}$ than the one assigned to it by $C^{(i-1)}$.Hence, 
+			\[\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i)}}\norm{x - m_k^{(i)}}^2 <
+			\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i-1)}}\norm{x - m_k^{(i)}}^2 \]
+		\item $E(C^{(i)},m^{(i)}) \leq E(C^{(i)},m^{(i-1)})$
+			
+			This statement is equivalent to the following
+			\[\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k}\norm{x - m_k}^2 \leq
+			\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k}\norm{x - a_k}^2 \]
+			, where $a = (a_1, \dots, a_k)$ with $a_k \in \R^M$ is an arbitrary point in the same space. Consider $C_k$ for it:
+			\[\sum_{x\in C_k}\norm{x - m_k}^2 \leq \sum_{x\in C_k}\norm{x - a_k}^2\]
+			\begin{align*}
+				\sum_{x\in C_k}\norm{x - a_k}^2 &= \sum_{x\in C_k}\norm{(x - m_k) + (x - a_k)}^2 \\
+				& = \sum_{x\in C_k}\norm{x - m_k}^2 + \norm{m_k - a_k}^2 + 2(x - m_k)\cdot (m_k - a_k) \\
+				& = \sum_{x\in C_k}\norm{x - m_k}^2 + \sum_{x\in C_k}\norm{m_k - a_k}^2 + 2\sum_{x\in C_k}(x\cdot m_k - x\cdot a_k - m_k \cdot m_k + m_k \cdot a_k) \\
+				& \text{as} \sum_{x\in C_k} x = \sum_{x\in C_k} m_k \\
+				& = \sum_{x\in C_k}\norm{x - m_k}^2 + |C_k|\norm{m_k - a_k}^2 + 2\cdot |C_k|(m_k \cdot m_k - m_k \cdot a_k - m_k\cdot m_k + m_k \cdot a_k) \\
+				&= \sum_{x\in C_k}\norm{x - m_k}^2 + |C_k|\norm{m_k - a_k}^2 \\
+				&\geq \sum_{x\in C_k}\norm{x - m_k}^2
+			\end{align*}
+		\end{enumerate}
+		Hence,
+		\[\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i)}}\norm{x - m_k^{(i)}}^2 \leq
+		\frac{1}{2}\sum_{k=1}^K \sum_{x\in C_k^{(i-1)}}\norm{x - m_k^{(i-1)}}^2 \]
+	\item Every data point $x_n$ must be assigned to precisely one class in oder to the algorithm be converging. It was shown above. 
+	\item It is not a big deal to extend first step to an arbitrary norm. The problem is how to calculate centers of clusters.
+	\item In that case result of clustering depends on realization in programm. Final result significantly depends on the initial statements of centers.
+	\newpage
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{kmeans_exercise_3_it.png}
+		\caption{KMeans algorithm}
+	\end{figure}
+	\hfill
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\textwidth]{kmeans_exercise_3_sumup.png}
+		\caption{KMean clustering sumup}
+	\end{figure}
+\end{itemize}
 
 \end{document}
