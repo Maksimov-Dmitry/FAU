@@ -4,7 +4,10 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
 \usepackage{subcaption}
+\usepackage{graphicx}
 
 \NiceMatrixOptions{cell-space-limits = 1pt}
 
@@ -107,7 +110,7 @@ x = \begin{pNiceMatrix}
 \end{pNiceMatrix}
 $$
 
-\exercise[{[Norms]}]
+\exercise*[{[Norms]}]
 \begin{definition*}[Norm]
 	A mapping $\norm{\cdot}$ from any (real) vector space \emph{V} to the real numbers $\R$ is called a norm, whenever
 	\begin{enumerate}
@@ -172,7 +175,7 @@ $$
 		Let's start by describing DS
 
 		\input{describe}
-		\begin{figure}[h]
+		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\textwidth]{df_visualization.png}
 			\caption{visualization of \emph{faithful.csv} data}
@@ -181,25 +184,25 @@ $$
 
 		\begin{figure}
 		     \centering
-		     \begin{subfigure}[b]{0.6\textwidth}
+		     \begin{subfigure}[b]{0.4\textwidth}
 		         \centering
 		         \includegraphics[width=\textwidth]{kmeans_visualization_0.png}
 		         \caption{iteration = 0}
 		     \end{subfigure}
 		     \hfill
-		     \begin{subfigure}[b]{0.6\textwidth}
+		     \begin{subfigure}[b]{0.4\textwidth}
 		         \centering
 		         \includegraphics[width=\textwidth]{kmeans_visualization_1.png}
 		         \caption{iteration = 1}
 		     \end{subfigure}
 		     \hfill
-		     \begin{subfigure}[b]{0.6\textwidth}
+		     \begin{subfigure}[b]{0.4\textwidth}
 		         \centering
 		         \includegraphics[width=\textwidth]{kmeans_visualization_2.png}
 		         \caption{iteration = 2}
 		     \end{subfigure}
 		     \hfill
-		     \begin{subfigure}[b]{0.6\textwidth}
+		     \begin{subfigure}[b]{0.4\textwidth}
 		         \centering
 		         \includegraphics[width=\textwidth]{kmeans_visualization_3.png}
 		         \caption{iteration = 3}
@@ -213,12 +216,62 @@ $$
 			\caption{KMean clustering sumup}
 		\end{figure}
 \end{enumerate}
-\newpage
-\exercise*[{[Implementing EM for Clustering]}]
 
-\exercise*[{[Experiments with K-Means and EM]}]
+\exercise[{[Implementing EM for Clustering]}]
+Since the result of the EM algorithm is predicatable for the \emph{faithful} DS we will look at another dataset.
+\begin{figure}[hbt!]
+     \centering
+     \begin{subfigure}[b]{0.6\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{EM_visualization_0.png}
+         \caption{start}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.6\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{EM_visualization_92.png}
+         \caption{end}
+     \end{subfigure}
+        \caption{EM algorithm}
+\end{figure}
 
-\exercise*[{[Theory of K-means]}]
+It cannot be denied that result is insufficient. \textbf{Hence, we have a question: why is the clustering result like this? It's obvious that there are 2 clusters which can be modulated as random points from multivariate Gaussian distributions with the same means and different covariance matrices.}
+
+\exercise[{[Experiments with K-Means and EM]}]
+Create a DS of 3 clusters:
+\begin{figure}[hbt!]
+     \centering
+     \begin{subfigure}[b]{0.2\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{apple.png}
+         \caption{apple}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.2\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{desk.png}
+         \caption{desk}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.2\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{classroom.png}
+         \caption{classroom}
+     \end{subfigure}
+        \caption{examples of dataset}
+\end{figure}
+
+Let's transform to gray-scale matrices and apply TSNE algorithm to visualize clusters. Plot 2d space to show data:
+\begin{figure}[hbt!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{my_clusters.png}
+	\caption{apples, desks, classroomes data}
+\end{figure}
+
+There is no any structure in this data. Hence, there is no point to do clustering.
+\textbf{What did we do wrong?}
+
+\exercise[{[Theory of K-means]}]
 
 \begin{itemize}
 	\item Show that the iterates of the algorithm satisfy
@@ -255,18 +308,16 @@ $$
 	\item Every data point $x_n$ must be assigned to precisely one class in oder to the algorithm be converging. It was shown above. 
 	\item It is not a big deal to extend first step to an arbitrary norm. The problem is how to calculate centers of clusters.
 	\item In that case result of clustering depends on realization in programm. Final result significantly depends on the initial statements of centers.
-	\newpage
-	\begin{figure}
+	\begin{figure}[hbt!]
 		\centering
 		\includegraphics[width=0.8\textwidth]{kmeans_exercise_3_it.png}
 		\caption{KMeans algorithm}
 	\end{figure}
 	\hfill
-	\begin{figure}
+	\begin{figure}[hbt!]
 		\centering
 		\includegraphics[width=0.8\textwidth]{kmeans_exercise_3_sumup.png}
 		\caption{KMean clustering sumup}
 	\end{figure}
 \end{itemize}
-
 \end{document}
