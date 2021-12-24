@@ -60,6 +60,24 @@
 			&x,y, \geq 0
 		\end{align*}
 
+		Using python and SciPy check whether $(x^\star, y^\star) = (\frac{13}{3}, 0, \frac{5}{3}, 1, 0)^T \text{ is an optimal solution and } W^\star = Z^\star$. The code implementation can be founded here \href{https://colab.research.google.com/drive/183PlRiFx1C_aDkJ0yZC86WoozAwRDpcC?usp=sharing}{Code}. Due to SciPy restrictions linear function to be minimized: $-Z = -c^T x - d^T y$
+\newpage
+\begin{figure}[hbt!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{primal_solution.png}
+	\caption{Solution of primal problem}
+\end{figure}
+
+	As we can see $x = (4.3, 0, 1.6, 1., 0.)^T =  (x^\star, y^\star) = (\frac{13}{3}, 0, \frac{5}{3}, 1, 0)^T \text{ and } Z^\star = 25$.
+
+	Now, solve the dual problem
+
+\begin{figure}[hbt!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{dual_solution.png}
+	\caption{Solution of dual problem}
+\end{figure}
+	Since $W^\star = Z^\star$ and all above mentioned $(x^\star, y^\star) = (\frac{13}{3}, 0, \frac{5}{3}, 1, 0)^T$ is an optimal solution.
 \end{enumerate}
 \exercise
 Consider the following program:
