@@ -115,3 +115,10 @@ dmypy.json
 
 # Tex trash
 *.synctex.gz
+
+#Photos
+*.png
+*.jpg
+
+#logs
+*.log

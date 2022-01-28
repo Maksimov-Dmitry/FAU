@@ -1,0 +1,118 @@
+\documentclass{homework}
+\usepackage{xcolor}
+\usepackage{nicematrix}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{leftidx}
+\usepackage{tikz}
+
+\NiceMatrixOptions{cell-space-limits = 1pt}
+
+\title{Solutions Excercise 4}
+\author{
+  Maksimov, Dmitrii\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+}
+
+\begin{document}
+
+\maketitle
+
+\exercise
+\begin{enumerate}[label=(\alph*)]
+	\item Write down a procedure solving linear programs of the form max $\{c^Tx | Ax \leq b\}$ using the Fourier-Motzkin-Elimination.
+	\begin{enumerate}[label=\arabic*.]
+		\item reduce n-variable problem to (n-1) - variable problem using Fourier-Motzkin-Elimination
+		\item repeat first punkt while problem is not 1-variable
+		\item check whether $\{x\in\R^1: Ax\leq b\}$ is not empty. If non empty then go next else finish
+		\item traceback steps using a solution to the 1-variable to find solutions to another one
+	\end{enumerate}
+	\item Use your developed procedure to solve
+	\begin{align*}
+	\text{max} \quad
+	&2x_1 + x_2 - x_3 \\
+	\text{s.t.} \quad
+	&3x_1 + x_2 - 2x_3 \leq 0\\ 
+	&x_1 - 2x_2 - 4x_3 \leq -14\\
+	&x_1 - 2x_2 - 4x_3 \leq -8\\ 
+	&-x_1 + x_2 + 4x_3 \leq 14\\
+	&-2x_1 - 5x_2 + x_3 \leq -6
+	\end{align*}
+	According to the algorithms, let's start with eliminating $x_3$
+	\[
+	\begin{cases} 
+	  x_3\geq\frac{3x_1+x_2}{2} \\
+	  x_3\geq\frac{x_1-2x_2+14}{4} \\
+	  x_3\geq\frac{-x_1+3x_2+8}{2} \\
+	  x_3\leq\frac{14+x_1-x_2}{4} \\
+	  x_3\leq\-6+2x_1+5x_2
+	\end{cases}
+	\]
+	Now, pair up the lower bounds and the upper ones
+	\[
+	\begin{cases} 
+	  \frac{3x_1+x_2}{2}\leq\frac{14+x_1-x_2}{4} \\
+	  \frac{3x_1+x_2}{2}\leq-6+2x_1+5x_2 \\
+	  \frac{x_1-2x_2+14}{4}\leq\frac{14+x_1-x_2}{4} \\
+	  \frac{x_1-2x_2+14}{4}\leq-6+2x_1+5x_2 \\
+	  \frac{-x_1+3x_2+8}{2}\leq\frac{14+x_1-x_2}{4} \\
+	  \frac{-x_1+3x_2+8}{2}\leq-6+2x_1+5x_2
+	\end{cases}
+	\]
+	Just repeate step 1 and step 2 for other variables
+	\[
+	\begin{cases} 
+	  x_1\leq\frac{14-3x_2}{5} \\
+	  x_1\geq-9x_2+12 \\
+	  x_2\geq0 \\
+	  x_1\geq\frac{-22x_2+38}{7} \\
+	  x_1\geq7x_2+2 \\
+	  x_1\geq\frac{-7x_2+20}{5}
+	\end{cases}
+	\Longrightarrow
+	\begin{cases} 
+	  \frac{-9x_2+12}{2}\leq\frac{14-3x_2}{5} \\
+	  \frac{-22x_2+38}{7}\leq\frac{14-3x_2}{5} \\
+	 7x_2+2\leq\frac{14-3x_2}{5} \\
+	  \frac{-7x_2+20}{5}\leq\frac{14-3x_2}{5} \\
+	  x_2\geq0
+	\end{cases}
+	\Longrightarrow
+	\begin{cases} 
+	  x_2\geq\frac{46}{42} \\
+	  x_2\geq\frac{92}{89} \\
+	  x_2\leq\frac{4}{38} \\
+	  x_2\geq\frac{6}{4} \\
+	  x_2\geq0
+	\end{cases}
+	\]
+	Since $\{x\in\R^1: Ax\leq b\}$ is empty, the problem is infeasible.
+\exercise
+\begin{enumerate}[label=(\alph*)]
+	\item Let $C$ be the convex hull of the four points $P_1=(0,0), P_2=(2,1), P_3=(-1, 3.5)$ and $P_4=(-1,1)$.
+	\begin{enumerate}[label=\roman*.]
+		\item Describe $C$ through linear inequalities
+		\[C=
+		\begin{cases} 
+		 	\frac{5}{6}x_1+x_2\leq\frac{8}{3} \\
+			-\frac{x_1}{2}+x_2\geq0 \\
+			x_1+x_2\geq0 \\
+			x_1 \geq-1
+		\end{cases}
+		\]
+	\item Give the point $Q = (1, 1)$ as convex combination of $P_1,\dots, P_4$.
+	Convex combination for $Q$ \[Q=\sum_{i=1}^4\lambda_iP_i, \sum_{i=1}^4\lambda_i=1.\]
+	Since, It's obvious that $Q$ lies on a line $P_4P_2 \rightarrow \lambda_1=\lambda_3=0$. Hence \[Q=\lambda P_4 + (1-\lambda)P_2 \Longrightarrow \lambda_4=\frac{1}{3}, \lambda_2=\frac{2}{3}\]
+	\end{enumerate}
+\end{enumerate}
+	
+\end{enumerate}
+\textbf{The rest of the exercises seemed very difficult and incomprehensible.}
+\end{document}
