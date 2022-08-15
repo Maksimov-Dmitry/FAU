@@ -1,0 +1,43 @@
+\documentclass{homework}
+
+\title{Assignment6: MDP, Decision Trees}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[6.2 (Sunbathing)]
+Eight people go sunbathing. They are categorized by the attributes Hair and Lotion and the result of whether they got sunburned.
+\begin{enumerate}
+	\item Which quantity does the information theoretic decision tree learning algorithm use to pick the attribute to split on?
+
+	Information gain: $Gain(A)=I(P(C)) - \sum_a P(A=a)\cdot I(P(C|A=a))$, where $I(P(C))=\sum_i -P_i\cdot \log_2(P_i)$
+	\item Compute that quantity for the attributes Hair and Lotion. (Simplify as much as you can without computing logarithms.)
+
+	$P(C) = \langle P(C=Yes), P(C=No) \rangle = \langle \dfrac{2}{8}, \dfrac{6}{8} \rangle \Rightarrow I(P(C))\approx 0.81$
+	\begin{itemize}
+		\item Hair
+
+		$\sum_{a\in \{Light, Dark\}}P(Hair=a)\cdot I(P(C|Hair=a))=\dfrac{5}{8}\cdot I(\langle \dfrac{2}{5}, \dfrac{3}{5} \rangle) + \dfrac{3}{8}\cdot I(\langle 0, 1 \rangle)\approx0.61 \Rightarrow Gain(Hair) = 0.2$
+		\item Lotion
+
+		$\sum_{a\in \{No, Yes\}}P(Lotion=a)\cdot I(P(C|Lotion=a))=\dfrac{6}{8}\cdot I(\langle \dfrac{2}{6}, \dfrac{4}{6} \rangle) + \dfrac{2}{8}\cdot I(\langle 0, 1 \rangle)\approx0.69 \Rightarrow Gain(Lotion) = 0.12$
+	\end{itemize}
+	\item Assuming the logarithms are computed, how does the algorithm pick the attribute?
+
+	Algorithm picks the attribute with largest Information gain. Hence,  Hair is the best attribute to split on.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,52 @@
+\documentclass{homework}
+\usepackage{enumitem}
+
+\title{Assignment7: Learning}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[7.3 (Weight Updates)]
+
+Our hypothesis space contains the functions $h_\textbf{w}(\textbf{x}) = F(\textbf{w}^T\textbf{x})$ for 2 + 1 - dimensional vectors $\textbf{w, x}$ (using the trick $\textbf{x}_0 = 1$ to allow for the constant term $\textbf{w}_0$) and some fixed function $F$. 
+
+As the initial weights, we use $\textbf{w}_0 = \textbf{w}_1 = \textbf{w}_2 = 0$. For each of the following cases, iterate the weight update rule once for each example (using the examples in the order listed). Use learning rate $\alpha = 1$.
+
+\begin{enumerate}
+	\item Using the threshold function $F(z)=
+	\begin{cases} 
+	     1 & z >  0,\\
+	     0& otherwise.
+	\end{cases}$
+
+	Perceptron learning rule: $\textbf{w}^{(i)} = \textbf{w}^{(i-1)} + \alpha \cdot(y - h_\textbf{w}(\textbf{x}^{(i)}))\cdot \textbf{x}^{(i)}$
+	\begin{enumerate}[label*=\arabic*.]
+		\item $\textbf{w}^{(1)} = (0,0,0)^T + (2 - h_\textbf{w}((0,0,0)\cdot(1, 2,0)^T))\cdot (1, 2,0)^T = (2,4,0)^T$
+		\item $\textbf{w}^{(2)} = (2,4,0)^T + (2 - h_\textbf{w}((2,4,0)\cdot(1, 3,1)^T))\cdot (1, 3,1)^T = (3,7,1)^T$
+	\end{enumerate}
+	\item Using the logistic function $F(z)=1/(1+e^{-x})$
+
+	Logistic learning rule: $\textbf{w}^{(i)} = \textbf{w}^{(i-1)} + \alpha \cdot(y - h_\textbf{w}(\textbf{x}^{(i)}))\cdot h_\textbf{w}(\textbf{x}^{(i)}) \cdot (1-h_\textbf{w}(\textbf{x}^{(i)})) \cdot \textbf{x}^{(i)}$
+	\begin{enumerate}[label*=\arabic*.]
+		\item $h_\textbf{w}((0,0,0)\cdot(1, 2,0)^T) = 0.5\newline
+\textbf{w}^{(1)} = (0,0,0)^T + (2 - 0.5)\cdot 0.5\cdot (1-0.5)\cdot(1, 2,0)^T = (0.375,0.75,0)^T$
+		\item $h_\textbf{w}((0.375,0.75,0)\cdot(1, 3,1)^T) \approx 0.93\newline
+\textbf{w}^{(1)} = (0.375,0.75,0)^T + (2 - 0.93)\cdot 0.93\cdot (1-0.93)\cdot(1, 3,1)^T \approx (0.44,0.96,0.07)^T$
+	\end{enumerate}
+\end{enumerate}
+
+
+\end{document}

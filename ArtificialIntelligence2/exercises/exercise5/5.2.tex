@@ -1,0 +1,69 @@
+\documentclass{homework}
+
+\title{Assignment5: Markov Decision Procedures}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[5.2 (MDP Example)]
+The world is 101 fields wide. In the $Start$ state an agent has two possible actions, $Up$ and $Down$. It cannot return to $Start$ though and the cannot pass gray fields, so after the first move the only possible action is $Right$.
+\begin{enumerate}
+	\item Model this world as a Markov Decision Process, i.e., give the components $S,s_0,A, P,$ and $R$.
+
+	$S = \{s_{10}\} + \{ s_{ij}, \forall i,j: i \in \{0, 2\}, j\in \{0, 100\}\}$,
+\newline $s_0 = s_{10}$,
+\newline $A(s) = 
+\begin{cases} 
+     \{Up, Down\} & s =  s_{10},\\
+      \{Right\} & \text{otherwise}
+\end{cases}
+$
+\newline $P(s'|s, a) = 1$,
+\newline $R(s) = 
+\begin{cases} 
+     R_{s_{10}} & s =  s_{10},\\
+     50& s =  s_{00},\\
+     -50& s =  s_{20},\\
+     -1& s \in  \{s_{01}, s_{02}, \ldots, s_{0100}\},\\
+     1& s \in  \{s_{21}, s_{22}, \ldots, s_{2100}\},\\
+\end{cases}
+$
+\item For what discount factor $\gamma$ should the agent choose $Up$ and for which $Down$? Compute the utility of each action as a function of $\gamma$.
+
+We have 2 possible sequences of states: $Path_1 = [s_{10}, s_{00},s_{01}, \ldots, s_{0100}]$ and $Path_2 = [s_{10}, s_{20},s_{21}, \ldots, s_{2100}]$. Since $U(Path) = \sum_{t=0}^{len(Path) - 1} \gamma^tR(s_t)$:
+\begin{itemize}
+	\item $U(Path_1)$
+	
+	$U(Path_1) = R(s_{10}) + \sum_{t=1}^{101} \gamma^tR(s_{0(t-1)}) = R(s_{10}) + \gamma \cdot50 - \sum_{t=2}^{101} \gamma^t = \newline R(s_{10}) + \gamma \cdot50 - \dfrac{\gamma^2(1 - \gamma^{100})}{1 -  \gamma}$
+	\item $U(Path_2)$
+	
+	$U(Path_2) = R(s_{10}) + \sum_{t=1}^{101} \gamma^tR(s_{2(t-1)}) = R(s_{10}) - \gamma \cdot50 + \sum_{t=2}^{101} \gamma^t = \newline R(s_{10}) - \gamma \cdot50 + \dfrac{\gamma^2(1 - \gamma^{100})}{1 -  \gamma}$
+\end{itemize}
+Now, let's find for what discount factor $\gamma$ should the agent choose $Up$ and for which $Down$:
+\begin{enumerate}
+	\item $Up$
+
+$U(Path_1) > U(Path_2): R(s_{10}) + \gamma \cdot50 - \dfrac{\gamma^2(1 - \gamma^{100})}{1 -  \gamma} > R(s_{10}) - \gamma \cdot50 + \dfrac{\gamma^2(1 - \gamma^{100})}{1 -  \gamma}\Rightarrow \newline 50 > \dfrac{\gamma(1 - \gamma^{100})}{1 -  \gamma}\Rightarrow \gamma \leq 0.984 \Rightarrow \newline U(Path_1) = R(s_{10}) + 1.162, U(Path_2) = R(s_{10})-1.162$
+
+	\item $Down$
+
+$U(Path_1) < U(Path_2): R(s_{10}) + \gamma \cdot50 - \dfrac{\gamma^2(1 - \gamma^{100})}{1 -  \gamma} < R(s_{10}) - \gamma \cdot50 + \dfrac{\gamma^2(1 - \gamma^{100})}{1 -  \gamma}\Rightarrow \newline 50 < \dfrac{\gamma(1 - \gamma^{100})}{1 -  \gamma}\Rightarrow \gamma \geq 0.985 \Rightarrow \newline U(Path_1) = R(s_{10}) - 0.745, U(Path_2) = R(s_{10})+0.745$
+\end{enumerate}
+\item What is the optimal policy if the upper path is better?
+
+The optimal policy($\pi^\star_s$): $\pi^\star_s = \arg\max_{\pi} U^{\pi}(s)$, where $U^{\pi}(s) = EU$. Since $P(s'|s, a) = 1$, $\pi^\star_s = Up$
+\end{enumerate}
+\end{document}

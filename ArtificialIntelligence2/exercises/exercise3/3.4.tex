@@ -1,0 +1,78 @@
+\documentclass{homework}
+
+\title{Assignment3: Decisions}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[3.4 (Decision Network)]
+You need a new car. Your local dealership has two models on offer
+\begin{itemize}
+	\item $C_1$ for \$1500 with market value \$2000
+	\item $C_2$ for \$1150 with market value \$1400
+\end{itemize}
+Either car can be of good quality or bad quality. if $C_1$ is of bad quality, repairing it will cost \$700, if $C_2$ is of bad quality, repairing it will cost \$150.
+
+You have the choice between two tests:
+\begin{enumerate}
+	\item $Test_1$ at cost \$50: This will confirm that $C_1$ is of good quality (if it is) with certainty 85\% probability, and that it is of bad quality (if it is) with certainty 65\%.
+	\item $Test_2$ at cost \$20: This will confirm that $C_2$ is of good quality (if it is) with 75\% certainty, and that it is of bad quality (if it is) with certainty 70\%.
+\end{enumerate}
+The a priori probability (without any tests) that a car is of good quality is 70\% for $C_1$ and 65\% for $C_2$. 
+
+The utility function is the monetary value, i.e., the difference of the market value of the acquired car and the amount of money spent on test, car, and repair.
+\begin{enumerate}
+	\item Explain the involved random variables and their domains.
+		
+		Random variables:
+		\begin{itemize}
+			\item $Quality_1\in \{good, bad\}$ - quality of $C_1$
+			\item $Quality_2\in \{good, bad\}$ - quality of $C_2$
+			\item $TestResult_1\in \{good, bad\}$ - the result of quality of $C_1$
+			\item $TestResult_2\in \{good, bad\}$ - the result of quality of $C_2$
+		\end{itemize}
+
+		Variables:
+		\begin{itemize}
+			\item $Test\in \{noTest, Test_1, Test_2\}$ - a type of test
+			\item $Car\in \{C_1, C_2\}$ - a car
+		\end{itemize}
+	\item Draw the decision network for which test to apply and which car to buy in either case. This should include:
+		\begin{itemize}
+			\item an action node for the test decision
+			\item an action node for which car to buy
+			\item utility nodes for each of the two cars
+			\item chance nodes for the quality of the cars and the outcomes of the tests
+		\end{itemize}
+	\begin{figure}[hbt!]
+		\centering
+		\includegraphics[width=0.7\textwidth]{network.jpg}
+	\end{figure}
+	\item Explain the difference regarding the probability tables of the three kinds of nodes.
+	\begin{itemize}
+		\item action node(rectangle) - there is no any table here, because it's our action. It depends only on set of possible actions.
+		\item random variable node(ellipse) - the probability table with a dimension equal to the number of parents
+		\item utility node(diamond) - the utility table with a dimension equal to the number of parents
+	\end{itemize}
+	\item Assume we have chosen to do $Test_1$ and the outcome was good. Compute which car to buy.
+
+	$EU_1(Car=car_1|Test=Test_1, TestResult_1=good)=\sum_{Q\in Quality_1} P(Q|TestResult_1=good)\cdot U_1(Car=car_1, Test=Test_1,Quality_1=Q)=0.85\cdot (2000-1500-50-0) + (1-0.85)\cdot (2000-1500-50-700)=345$
+
+	$EU_2(Car=car_2|Test=Test_1, TestResult_1=good)=\sum_{Q\in Quality_2} P(Q)\cdot U_2(Car=car_2, Test=noTest,Quality_2=Q)=0.65\cdot (1400-1150-0-0) + (1-0.65)\cdot (1400-1150-0-150)=197.5$
+
+	Since $EU_1 > EU_2$ It would be better to buy $C_1$ given to do $Test_1$ and the outcome was good.
+\end{enumerate}
+\end{document}

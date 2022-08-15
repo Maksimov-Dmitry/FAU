@@ -1,0 +1,37 @@
+\documentclass{homework}
+\title{Assignment1: Probability}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[1.4 (Chained Production Elements)]
+An apparatus consists of six elements $A,B,C,D,E,F$. Assume the probabilities $P(b_X)$, that element $X$ breaks down, are all stochastically independent, with $P(b_A) = 5\%, P(b_B) = 10\%, P(b_C) = 15\%, P(b_D) = 20\%, P(b_E) = 25\% \text{ and } P(b_F) = 30\%.$
+\begin{enumerate}
+	\item Assume the apparatus works if and only if at least $A$ and $B$ are operational, $C$ and $D$ are operational, or $E$ and $F$ are operational. What is the probability the apparatus works?
+	
+	$work = \lnot((b_A \lor b_B) \land (b_C \lor b_D) \land (b_E \lor b_F)) \Rightarrow$ \newline
+	$P(work) = 1-(P(b_A)+P(b_B))\cdot (P(b_C) + P(b_D)) \cdot (P(b_E) + P(b_F))=0.971125$
+	\item Consider a different scenario, in which the elements $A$ and $C$, $ D$ and $F$ and $B$ and $E$ are pairwise linked; such that if either of them breaks down, then the linked element is not operational either. What is the probability that the apparatus works now?
+
+	$work =  \lnot(((b_A\lor b_C) \lor (b_B\lor b_E)) \land ((b_C\lor b_A) \lor (b_D\lor b_F)) \land ((b_E\lor b_B) \lor (b_F\lor b_D))) \Rightarrow$ \newline
+  \begin{flalign*}
+	P(work) = 1-&(P(b_A) + P(b_C)+P(b_B)+P(b_E))\cdot(P(b_C)+P(b_A) + P(b_D)+P(b_F)) \cdot&& \\
+	&(P(b_E)+P(b_B) + P(b_F)+P(b_D))=0.67275
+  \end{flalign*}
+	
+\end{enumerate}
+
+\end{document}

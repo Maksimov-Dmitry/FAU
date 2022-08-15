@@ -1,0 +1,33 @@
+\documentclass{homework}
+
+\title{Assignment4: Information Value and Markov Basics}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[4.1 (The Value of Information)]
+Chef Giordana runs a kitchen that provides food for a large organisation. A salad is sold for \texteuro 6 and costs \texteuro 4 to prepare. So a sold salad is profit of \texteuro 2, and an unsold salad a loss of \texteuro 4. Actual demand will be 40 (with probability 0.5) or 60 (also with probability 0.5) each day.
+Each day, Giordana must decide in advance between two options: prepare 40 or 60 salads.
+\begin{enumerate}
+	\item In the absence of additional information, compute the expected utility of each decision option, and choose the best option.
+	
+	Let's $Demand \in \{40, 60\},NumOfSalads \in \{40, 60\}$ and \newline$U(Demand,  NumOfSalads) = 6\cdot \min(Demand, NumOfSalads) - 4\cdot NumOfSalads$  \newline where $P(Demand = 40) = P(Demand = 60) = \dfrac{1}{2}$. Hence best option $a$ is \[\arg \max_{a} EU(NumOfSalads = a).\]
+$EU(NumOfSalads = 40) = \sum_{d\in Demand} P(d)\cdot U(d, 40) = 80$,\newline $EU(NumOfSalads = 60) = \sum_{d\in Demand} P(d)\cdot U(d, 60) = 60$. \newline Hence, $NumOfSalads = 40$ is the best option.
+	\item She is considering a new ordering system, where she knows the demand perfectly in advance. So she can always choose the better of the two options. State the formula for computing the value of this perfect information, explain the components in Giordana's case, and compute the value.
+
+	$VPI_E(F)\coloneqq \sum_{f\in D} P(F=f|E)\cdot EU(\alpha_f|E, F=f))-EU(a|E)$, \newline where in Giordana's case: $f - Demand$, there is no evidence E here, $\alpha_f$ - the best option knowing the demand in advance, $EU$ - expected utility, $a$ - best option without knowing the demand in advance. \newline Since $\alpha_{40}$ = 40 and $\alpha_{60} = 60, VPI(Demand) = 20$.
+\end{enumerate}
+\end{document}

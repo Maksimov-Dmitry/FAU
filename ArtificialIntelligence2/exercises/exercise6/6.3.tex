@@ -1,0 +1,40 @@
+\documentclass{homework}
+
+\title{Assignment6: MDP, Decision Trees}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[6.3 (Loss)]
+Our goal is to find a linear approximation $h(x) = ax$ for the series of square numbers 0, 1, 4, 9, 16.
+\begin{enumerate}
+	\item Model this situation as an inductive learning problem.
+	\begin{itemize}
+		\item hypothesis space $H = ax$
+		\item consistent training set of examples $f = \{\{0, 0\},\{1, 1\},\{2, 4\},\{3, 9\},\{4, 16\}\}$
+	\end{itemize}
+	\item Assuming all 5 possible examples are equality probable, compute the generalized loss using the squared error loss function. (This is a function of $h$.)
+	
+	$GenLoss_L(h)=\sum_{x,y\in E} L(y, h(x))\cdot P(x,y)$. Since 5 possible examples are equality probable, $P(x,y)=\dfrac{1}{5} \forall x,y \in f. L(y, h(x)) = (y-ax)^2$. However, we don't choose $a$ yet. So, we can't compute it.
+	\item Find $h^{\star}$
+
+	$a^{\star} = (X^TX)^{-1}X^Ty$, where $X = (0, 1, 2, 3, 4)^T, y=(0, 1,4,9,16)^T$. \newline Hence $a^{\star} = 3.3 \Rightarrow h^{\star}=3.3x$
+	\item What is the error rate of $h^{\star}$?
+
+	$error(h)=GenLoss_{L_{0/1}}(h)=\dfrac{1}{5}\cdot(0+1+1+1+1) = \dfrac{4}{5}$
+\end{enumerate}
+
+\end{document}

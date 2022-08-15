@@ -1,0 +1,39 @@
+\documentclass{homework}
+\title{Assignment1: Probability}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[1.1 (Bayesian Rules)]
+\begin{enumerate}
+	\item Bayes rule
+	
+	$P(a|b) = \dfrac{P(b|a)\cdot P(a)}{P(b)}$
+	\item Product rule
+	
+	$P(a\land b) = P(a|b)\cdot P(b)$
+	\item Chain rule
+	
+	$P(X_1, \ldots,X_n) = P(X_n|X_{n-1}, \ldots,X_1)\cdot P(X_{n-1},|X_{n-2}, \ldots,X_1)\cdot \ldots \cdot P(X_2|X_1) \cdot P(X_1)$
+	\item Marginalization
+	
+	$P(X)=\sum_{y\in Y}P(X, y)$
+	\item Normalization
+
+	$P(X|e)=\alpha P(X,e)$
+\end{enumerate}
+
+\end{document}

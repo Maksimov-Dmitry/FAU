@@ -1,0 +1,27 @@
+\documentclass{homework}
+
+\title{Assignment5: Markov Decision Procedures}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[5.1 (Bellman Equation)]
+State the Bellman Equation and explain every symbol in the equation and what the equation is used for and how.
+
+\[U(s)=R(s) + \gamma \cdot \max_{a \in A(s)} \sum_{s'}U(s')\cdot P(s'|s, a)\], where $s$ - a state, $U$ - expected sum of reward,  $R$ - current reward, $\gamma$ - discount factor, $A(s)$ - set of possible actions in state $s$, $a$ - action, $s'$ - possible state after the action $a$.
+
+Bellman Equation is used for updating the utility for a state $s$. We have to assign some utility at each node at the beginning and then update utilitiy for each state until convergency.  After that, we can choose policy as MEU.
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass{homework}
+\usepackage{enumitem}
+
+\title{Assignment9: Learning}
+\author{
+  \texttt{<xiangru.chen@fau.de>} \\
+  \texttt{yd08ucoz}
+  \and
+  \texttt{<yamei.zhao@fau.de>}\\
+  \texttt{mo02buqo}
+  \and
+  \texttt{<ekaterina.bobrova@fau.de>}\\
+  \texttt{il71ywod}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[9.2 (Relevance-Based Learning)]
+\begin{enumerate}
+	\item Explain which predicates are needed. For each predicate give the arity and the domain of each argument. Give the formal representation of the description and the classification of Example 1.
+
+$x$ in every predicate has the domain of people in dataset (samples) \{1,2,3,4,5,6\}.
+Predicates:
+\begin{itemize}
+	\item $Hair(x, h)$: arity - 2; domain of $h$ - \{Blonde, Brown\}
+	\item $Height(x, h)$: arity - 2; domain of $h$ - \{Short, Tall\}
+	\item $Weight(x, w)$: arity - 2; domain of $w$ - \{Light, Average, Heavy\}
+	\item $Lotion(x, l)$: arity - 2; domain of $l$ - \{yes, no\}
+	\item $Sunburned(x, s)$: arity - 2; domain of $s$ - \{yes, no\}
+\end{itemize}
+Description of Example 1: $Hair(1, Blonde)\land Height(1, Short)\land Weight(1, Light)\land  Lotion(1, no)$
+Classification of Example 1: $Sunburned(1, yes)$
+
+	\item Explain whether the determinations $Height\succ Weight$ and $Weight\succ Height$ hold or do not hold.
+
+$Height\succ Weight$ does not hold, because we do not have an exact mapping for $Height(x, Short)$, which can be seen from examples 1 and 2. \newline $Weight\succ Height$ does hold, because this determination is consistent with a complete set of examples.
+	\item Give the minimal consistent determination of the class by a subset of the attributes. Give the formal representation of the rule learned from that determination.
+
+Minimal consistent determination: $Hair, Lotion\succ Sunburned$.\newline Corresponding representation of the rule: $\forall x.Hair(x,Blonde)\land  Lotion(x, no)\Rightarrow Sunburned(x, yes)$
+\end{enumerate}
+
+
+\end{document}

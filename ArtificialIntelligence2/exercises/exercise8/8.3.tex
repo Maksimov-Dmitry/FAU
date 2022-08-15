@@ -1,0 +1,42 @@
+\documentclass{homework}
+\usepackage{enumitem}
+
+\title{Assignment8: Regression and Neural Networks}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[8.3 (Support Vectors)]
+
+\begin{enumerate}
+	\item Give a linear separator in the form $h(\textbf{x}) = \textbf{w}\cdot \textbf{x}+b$ for the dataset without $x5$.
+	
+	$h(\textbf{x}) = (1, 1)\cdot \textbf{x} - 1$
+	\item Explain informally why no linear separator exists for the full dataset of all 5 vectors.
+
+	All points belonging to class -1 cannot be separated by a line from points belonging to class 1.
+
+	\item Transform the dataset into a 3-dimensional dataset by applying the function $F(\langle u, v\rangle) = \langle u_2, v_2, u + v\rangle$.
+
+	$F(\textbf{X}) = \{\langle 0,0,0 \rangle,\langle 0,0.25,0.5 \rangle,\langle 0.25,0,0.5 \rangle,\langle 1,1,2 \rangle,\langle 4,4,4 \rangle\}$
+
+	\item Give a linear separator for the transformed full dataset in the form $h(\textbf{x}) = \textbf{w}\cdot \textbf{x}+b$.
+
+	$h(\textbf{x}) = (-1, -1, 2)\cdot \textbf{x} - 1$
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass{homework}
+\usepackage{enumitem}
+
+\title{Assignment9: Learning}
+\author{
+  \texttt{<xiangru.chen@fau.de>} \\
+  \texttt{yd08ucoz}
+  \and
+  \texttt{<yamei.zhao@fau.de>}\\
+  \texttt{mo02buqo}
+  \and
+  \texttt{<ekaterina.bobrova@fau.de>}\\
+  \texttt{il71ywod}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[9.3 (Passive Reinforcement Learning)]
+\begin{enumerate}
+	\item Give the transition model to the extent that it can be learned from these trials.
+
+	Given policy trials were:
+	\begin{itemize}
+		\item $up|up \rightarrow up|up \rightarrow down|right \rightarrow up|up \rightarrow right|right \rightarrow right|right \rightarrow right|right$
+		\item $up|up \rightarrow up|up \rightarrow right|right \rightarrow right|right \rightarrow down|right \rightarrow up|up \rightarrow right|right$
+		\item $right|up \rightarrow right|left \rightarrow up|left \rightarrow right|up$
+	\end{itemize}
+	Hence, from this trials we can calculate following transition model:
+
+			$up|up = \dfrac{\# up|up}{\sum_{i\in\{up,left,right\}}\# i|up} = \dfrac{6}{8}$,\newline
+			$right|up = \dfrac{\# right|up}{\sum_{i\in\{up,left,right\}}\# i|up} = \dfrac{2}{8}$\newline
+			$up|left = \dfrac{\# up|left}{\sum_{i\in\{up,left,right\}}\# i|left} = \dfrac{1}{2}$,\newline
+			$right|left = \dfrac{\# right|left}{\sum_{i\in\{up,left,right\}}\# i|left} = \dfrac{1}{2}$\newline
+			$down|right = \dfrac{\# right|right}{\sum_{i\in\{up,left,down,right\}}\# i|right} = \dfrac{2}{8}$\newline
+			$right|right = \dfrac{\# right|right}{\sum_{i\in\{up,left,down,right\}}\# i|right} = \dfrac{6}{8}$\newline
+
+	\item How could we learn the entire model?
+
+		Using direct utility estimation algorithm.  For each step in trial we calculate the utility of state using following equation: $U^\pi(s)=E[\sum_{t=0}^\infty \gamma^tR(S_t)]$. Then,we calculate average utility for the same states over all trials. Given utility we can compute optimal policy.
+	\item How would we proceed to learn the utilities of the states?
+		Using direct utility estimation algorithm and corresponding equaition of utility of state or using adaptive dynamic programming and Bellman equation to calculate utility of state.
+\end{enumerate}
+\end{document}

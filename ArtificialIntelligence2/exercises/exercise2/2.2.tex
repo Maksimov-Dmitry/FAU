@@ -1,0 +1,64 @@
+\documentclass{homework}
+\usepackage{diagbox}
+\usepackage{enumitem}
+
+\title{Assignment2: Bayesian Networks}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[2.2 (AFT Tests)]
+
+The probability of a foetus having Down syndrome is strongly correlated
+with the age of the pregnant parent. We will only consider the following two age groups.
+\begin{enumerate}
+	\item For 25 year olds the probability is one in 1250
+	\item for 43 year old parents it increases to one in fiffty.
+\end{enumerate}
+However, diagnostic tests are never perfect. We distinguish two kinds of errors:
+\begin{enumerate}
+	\setcounter{enumi}{2}
+	\item Type I Error (False Positive): The test result is positive even though the child is healthy.
+	\item Type II Error (False Negative): The test result is negative even though the child has trisomy 21.
+\end{enumerate}
+The probabilities of Type I and Type II Errors are both merely 1\% for amniotic fluid tests for Down syndrome.
+\begin{enumerate}
+	\item Express the four items above in the form of conditional probabilities. Use the random variable $F$ with domain \{$Age_{25},Age_{43}$\} for the age of the pregnant person and the Boolean random variables $Pos$ and $Down$ for the propositions \emph{"The amniotic fluid test is positive"} and \emph{"The child has Down syndrome"} respectively.
+	\begin{enumerate}[label*=\arabic*.]
+		\item $P(Down=True|F=Age_{25})=\dfrac{1}{1250}$
+		\item $P(Down=True|F=Age_{43})=\dfrac{1}{50}$
+		\item $P(Pos=True|Down=False)=\dfrac{1}{100}$
+		\item $P(Pos=False|Down=True)=\dfrac{1}{100}$
+	\end{enumerate}
+	\item Assume that we have a 25 year old pregnant person. Using Bayes' theorem, express and compute the probability that their child has Down syndrome, given that the amniotic fluid test is positive. What can we conclude from the result?
+	
+	The first point to note is Down is conditional independent of F given Pos.  This is because dependence between Down and Pos are caused by a third factor that affects both of them. This third factor is Age. Hence, given Pos, knowing F doesn't give any more information about Down.
+
+	$P(Down=True|F=Age_{25}, Pos=True)=P(Down=True|Pos=True)=\newline \dfrac{P(Pos=True|Down=True)\cdot P(Down=True)}{P(Pos=True)}$
+
+	$P(Down=True) =\newline {\small P(Down=True|F=Age_{25})\cdot P(F=Age_{25}) + P(Down=True|F=Age_{43})\cdot P(F=Age_{43}) = \dfrac{13}{1250}}$
+	iff $P(F=Age_{43}) = P(F=Age_{25}) = \dfrac{1}{2}$
+
+	$P(Pos=True) = \newline {\small P(Pos=True|Down=True)\cdot P(Down=True) + P(Pos=True|Down=False)\cdot P(Down=False) =} \newline (1-P(Pos=False|Down=True))\cdot P(Down=True) + P(Pos=True|Down=False)\cdot \newline (1-P(Down=True))=\dfrac{2524}{125000}$
+
+	$P(Pos=True|Down=True) = 1-P(Pos=False|Down=True)=\dfrac{99}{100}$
+
+	$P(Down=True|F=Age_{25}, Pos=True) = \dfrac{1287}{2524}\approx 0.51$
+
+	We can conclude that if we know the test's result it doesn't matter how old is a pregnant person for predicting Down syndrome.
+\end{enumerate}
+
+\end{document}

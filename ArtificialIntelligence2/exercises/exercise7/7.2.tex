@@ -1,0 +1,39 @@
+\documentclass{homework}
+
+\title{Assignment7: Learning}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[7.2 (Decision List)]
+
+Target variable $V$ seems to be negative XOR function of $C$ and $D$ except example \#4. Hence our goal is to exclude this example and then apply the XOR function using the available literals.
+\begin{enumerate}
+	\item Assume your literals must be of the form $attribute = number$. For which $k$-can we give the shortest possible decision list in $k$-DL (i.e., using at most $k$ literals per test)? Give the list.
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.7\textwidth]{number}
+	    \caption{2-DL, length = 3}
+	\end{figure}
+	\item Now assume your literals may also be of the form $attribute = attribute.$ Answer the same question as above.
+	\begin{figure}[h]
+	    \centering
+	    \includegraphics[width=0.45\textwidth]{attribute}
+	    \caption{1-DL, length = 2}
+	\end{figure}
+\end{enumerate}	
+
+\end{document}

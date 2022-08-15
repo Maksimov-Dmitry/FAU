@@ -1,0 +1,31 @@
+\documentclass{homework}
+
+\title{Assignment3: Decisions}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[3.2 (Expected Utility)]
+
+\begin{enumerate}
+	\item State the formal definition of expected utility of an action in the current state of an agent? Explain the meaning of every variable in the defining equation.
+
+	$EU(a|e)\coloneqq \sum_{s\in\Omega} P(s|a, e)\cdot U(s)$, where $EU$ - expected utility, $a$ - an action, $e$ - evidence, $\Omega$ - set of all posible states, $s$ - specific set of states, $U$ - utility function.
+	\item How do we use expected utility to make decisions?
+
+	We compute expected utility for all posible actions and then choose action that results in the highest expected utility: \[\arg \max_{a} EU(a|e)\]
+\end{enumerate}
+\end{document}

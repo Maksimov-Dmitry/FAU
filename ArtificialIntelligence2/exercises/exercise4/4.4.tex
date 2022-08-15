@@ -1,0 +1,36 @@
+\documentclass{homework}
+
+\title{Assignment4: Information Value and Markov Basics}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[4.4 (Prediction, Filtering, Smoothing)]
+Consider an HMM consisting of a stationary Markov process and a stationary sensor model. We restrict attention to HMMs with a single state-variable $X_t$ and a single evidence variable $E_t$. (The sensor model does not necessarily have the Markov property.)
+Explain the results of the prediction, filtering, smoothing algorithms. For each one, state the motivation, the expression for the conditional probability that is to be computed, and explain the components of the formula. You do not have to explain how the algorithms work.
+\begin{itemize}
+	\item Prediction
+
+	Prediction is the estimation of future state $X_{t+k}, k>0$ given observed evidences $E_{1:t}: P(X_{t+k}|E_{1:t})$.
+	\item Filtering
+
+	Filtering is the estimation of an unobserved state $X_t$ given observed evidences $E_{1:t}: P(X_t|E_{1:t})$.
+
+	\item Smoothing
+
+	Smoothing is the retroactive estimation of an unobserved state $X_k, 0\leq k<t$ given observed evidences $E_{1:t}: P(X_k|E_{1:t})$.
+\end{itemize}
+\end{document}

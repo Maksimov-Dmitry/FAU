@@ -1,0 +1,35 @@
+\documentclass{homework}
+
+\title{Assignment3: Decisions}
+\author{
+  Dmitrii, Maksimov\\
+  \texttt{dmitrii.maksimov@fau.de} \\
+  \texttt{ko65beyp}
+  \and
+  Ilia, Dudnik\\
+  \texttt{ilia.dudnik@fau.de}\\
+  \texttt{ex69ahum}
+  \and
+  Aleksandr, Korneev\\
+  \texttt{aleksandr.korneev@fau.de}\\
+  \texttt{uw44ylyz}
+}
+\begin{document}
+
+\maketitle
+
+\exercise[3.3 (Decision Theory)]
+You are offered the following game: You pay $x$ dollars to play. A fair coin is then tossed repeatedly until it comes up heads for the first time. Your payout is $2^n$, where $n$ is the number of tosses that occurred.
+\begin{itemize}
+	\item Assume your utility function is exactly the monetary value. How much should you, as a rational agent, be willing to pay to play?
+
+	$EMV=\displaystyle\sum_{n=1}^{\infty}P(n)\cdot U(n)=\sum_{n=1}^{\infty}\dfrac{1}{2^n}\cdot 2^n=\infty$. Hence, any finite fee is rational.
+	\item Assume now, that your utility function for having $k$ dollars is $U(k) = m\log_lk$ for some $m, l \in \N^+$. How does this change the result?
+
+	$EMV=\displaystyle\sum_{n=1}^{\infty}\dfrac{m\log_l2^n}{2^n} = 2\cdot m\log_l2$. 
+
+	\item What is wrong with the result from the first exercise? Which implicit assumption leads to the apparently nonsensical result? Can you think of a way to repair our utility function in a more realistic way than taking logarithms?
+
+	The problem is that our utility function is unbounded.  Utility function should be \[2^{E[n]}=2^{\sum_{n=1}^{\infty}\frac{n}{2^n}}= 2^2=4.\]This utility function doesn't look like ordinal utility function, but this function make a sense. This is because it's just U(average number of tosses).
+\end{itemize}
+\end{document}
